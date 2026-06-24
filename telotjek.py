@@ -167,7 +167,9 @@ def select_best_hit(
 	filtered.sort(key=lambda hit: (hit.bitscore, hit.length, hit.pident), reverse=True)
 	return filtered[0]
 
-def classify_subject_coverage(hit: BlastHit, full_length: int = 180) -> str:
+def classify_subject_coverage(hit: BlastHit, full_length: int | None = None) -> str:
+	if full_length is None:
+		full_length = hit.slen
 	tolerance = 3
 	# Prioritize how much of the telomere start is missing, which is the critical part.
 	missing_from_alignment_start = max(0, hit.subject_start - 1)
@@ -200,7 +202,13 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 	parser.add_argument("--telomeres",
 	type=Path,
 	help="Telomere sequence FASTA used to build the BLAST database",
-	default=Path(__file__).parent / "telo_classes.fasta")
+	default=Path(__file__).parent / "data/all_telomere_reps.clean.cluster.fasta")
+
+	parser.add_argument(
+		"--telo_class",
+		action="store_true",
+		help="Use data/telo_classes.fasta for Algora-gllardo et al. 2021 clusters instead of the default telomere FASTA",
+	)
 	
 	parser.add_argument("--window-size",
 	type=int,
@@ -233,6 +241,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 	type=float,
 	default=1e-5,
 	help="Maximum E-value to keep from BLAST")
+
+	parser.add_argument("--full-telomere-length",
+	type=int,
+	default=None,
+	help="Expected full telomere length for coverage classification; default infers from matched reference")
 	
 	parser.add_argument("--full-table",
 	action="store_true",
@@ -246,6 +259,8 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 
 def main(argv: list[str] | None = None) -> int:
 	args = parse_args(argv)
+	if args.telo_class:
+		args.telomeres = Path(__file__).parent / "data/telo_classes.fasta"
 
 	if not args.assembly.exists():
 		raise FileNotFoundError(f"Assembly FASTA not found: {args.assembly}")
@@ -327,7 +342,10 @@ def main(argv: list[str] | None = None) -> int:
 						writer.writerow([contig, side, "", "No match"])
 					continue
 
-				coverage_class = classify_subject_coverage(best_hit)
+				coverage_class = classify_subject_coverage(
+					best_hit,
+					full_length=args.full_telomere_length,
+				)
 
 				if args.full_table:
 					writer.writerow(
