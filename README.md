@@ -7,17 +7,16 @@ If you do not have a match in your *Complete* assembly consider checking if the 
 
 ## Usage
 ```
-python3 telotjek.py assembly.fasta
+telotjek.py assembly.fasta
 ```
 
 To use the 6 representatives outlined by Algora-Gallardo et al 2021:
 ```
-python3 telotjek.py assembly.fasta --telo_class
+telotjek.py assembly.fasta --telo_class
 ```
 
 ## Dependencies
 Requires blast
-
 
 ## Source:
 1. Faurdal D, Booth TJ, Weber T, Jørgensen TS. Tying up loose ends: recovering thousands of missing telomeres from Streptomyces and other Streptomycetaceae genomes. bioRxiv [Preprint]. 2025 Oct 14:2025.10.14.682034. doi:10.1101/2025.10.14.682034.
