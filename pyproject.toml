@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "Check assembly ends for Streptomycete telomeres using BLAST"
 readme = "README.md"
 requires-python = ">=3.9"
-license = { text = "MIT" }
+license ="MIT"
 license-files = ["LICEN[CS]E*"]
 authors = [
   { name = "David Faurdal" }
@@ -17,14 +17,13 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
 ]
+
+dependencies = []
+
 [project.urls]
 Homepage = "https://github.com/dalofa/telotjek"
 Issues = "https://github.com/dalofa/telotjek/issues"
 
-
-keywords = ["bioinformatics", "genomics", "blast", "telomere", "streptomycetes", "streptomyces"]
-
-dependencies = []
 
 # CLI entry point
 [project.scripts]
