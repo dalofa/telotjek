@@ -5,13 +5,22 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "telotjek"
 version = "0.1.0"
-description = "Check assembly ends for Streptomycete telomere sequences using BLAST"
+description = "Check assembly ends for Streptomycete telomeres using BLAST"
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
+license-files = ["LICEN[CS]E*"]
 authors = [
   { name = "David Faurdal" }
 ]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+[project.urls]
+Homepage = "https://github.com/dalofa/telotjek"
+Issues = "https://github.com/dalofa/telotjek/issues"
+
 
 keywords = ["bioinformatics", "genomics", "blast", "telomere", "streptomycetes", "streptomyces"]
 
@@ -30,3 +39,6 @@ where = ["."]
 telotjek = [
   "data/*.fasta"
 ]
+
+
+
