@@ -164,7 +164,7 @@ def select_best_hit(
 	]
 	if not filtered:
 		return None
-	filtered.sort(key=lambda hit: (hit.bitscore, hit.length, hit.pident), reverse=True)
+	filtered.sort(key=lambda hit: (hit.length, hit.bitscore, hit.pident), reverse=True)
 	return filtered[0]
 
 def classify_subject_coverage(hit: BlastHit, full_length: int | None = None) -> str:
