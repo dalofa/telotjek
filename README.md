@@ -7,7 +7,7 @@ Under occasional development.
 
 Should you manually inspect the ends of your Streptomycete assembly? If you can not idenitfy a telomere at both ends of a linear replicon the answer is yes.
 
-Telotjek provides a quick and dirty way to approach this check. It runs BLAST-searches against a representative of the 129 telomere clusters generated in Faurdal et al. 2025 [1] or a representative of the six classes outlined in Algora-Gallardo et al 2021 [2] and reports if it matches any of the classes and if it is present in full or truncated. If you do not have a match in your otherwise *complete* assembly you should consider checking if the reads support extending it further [1] or if you have a potentially novel telomere class on your hands.
+Telotjek provides a quick and dirty way to approach this check. It runs BLAST-searches against telomere a curated set of telomere sequences derived from Faurdal et al. 2025 [1] or a representative of the six classes outlined in Algora-Gallardo et al 2021 [2] and reports if it matches any of the classes and if it is present in full or truncated. If you do not have a match in your otherwise *complete* assembly you should consider checking if the reads support extending it further [1] or if you have a potentially novel telomere class on your hands.
 
 ## Usage
 
@@ -55,6 +55,9 @@ pip install telotjek
 
 ## Dependencies
 Requires blast
+
+## Note on the curated sequences
+The set of curated sequences was generated from [1] by dereplicating the identified telomeres, manually removing potentially truncated sequences and re-clustering at 80% using. Thus, the cluster number in the name does not correspond to the clusters derived in [1].
 
 ## Source:
 1. Faurdal D, Booth TJ, Weber T, Jørgensen TS. Tying up loose ends: recovering thousands of missing telomeres from Streptomyces and other Streptomycetaceae genomes. bioRxiv [Preprint]. 2025 Oct 14:2025.10.14.682034. doi:10.1101/2025.10.14.682034.
