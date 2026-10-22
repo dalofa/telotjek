@@ -202,7 +202,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 	parser.add_argument("--telomeres",
 	type=Path,
 	help="Telomere sequence FASTA used to build the BLAST database",
-	default=Path(__file__).parent / "data/all_telomere_reps.clean.cluster.fasta")
+	default=Path(__file__).parent / "data/all_mcl_cluster_sequences.fasta")
 
 	parser.add_argument(
 		"--telo_class",
@@ -212,7 +212,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 	
 	parser.add_argument("--window-size",
 	type=int,
-	default=360,
+	default=240,
 	help="Terminal window size to scan from each contig end")
 	
 	parser.add_argument("--end-tolerance",
