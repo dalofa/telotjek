@@ -307,7 +307,7 @@ def main(argv: list[str] | None = None) -> int:
 					[
 						"Contig",
 						"Side",
-						"Class",
+						"Match",
 						"Coverage",
 						"present",
 						"query_length",
@@ -324,7 +324,7 @@ def main(argv: list[str] | None = None) -> int:
 					]
 				)
 			else:
-				writer.writerow(["Contig", "Side", "Class", "Coverage"])
+				writer.writerow(["Contig", "Side", "Match", "Coverage"])
 
 			for query_id, (contig, side, query_length) in query_meta.items():
 				best_hit = select_best_hit(
